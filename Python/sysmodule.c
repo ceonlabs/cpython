@@ -3209,7 +3209,6 @@ makepathobject(const wchar_t *path, wchar_t delim)
 
     n = 1;
     p = path;
-    printf("%ls\n", path);
     while ((p = wcschr(p, delim)) != NULL) {
         n++;
         p++;
@@ -3217,7 +3216,6 @@ makepathobject(const wchar_t *path, wchar_t delim)
     v = PyList_New(n);
     if (v == NULL)
         return NULL;
-    PyList_SET_ITEM(v, 0, PyUnicode_FromString("./Lib"));
     for (i = 0; ; i++) {
         p = wcschr(path, delim);
         if (p == NULL)
