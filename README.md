@@ -1,11 +1,8 @@
-# Compiling Python3.11 with Cosmopolitan
+# Compiling Python3.11.0rc1 with Cosmopolitan
 
 This repo contains the source code of [Python 3.11.0rc1][py311] customized to
-compile with [Cosmopolitan][cosmo] libc.  Meant for experimental purposes only.
-
-** Note: ** this does not build a Python3.11 APE just yet -- I still need to
-figure out how Python3.11 adds elements to `sys.path` (something involving
-`Modules/getpath.py`).
+compile with [Cosmopolitan][cosmo] libc.  **Meant for experimental purposes
+only**.
 
 # Steps to compile
 
@@ -37,7 +34,7 @@ unzip cosmopolitan.zip
 
 6. run `make -j4`
 
-7. run `./python`
+7. run `./python.com`
 
 
 
