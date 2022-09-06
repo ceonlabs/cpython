@@ -4,7 +4,7 @@
 
 #ifndef Py_PYTHON_H
 #define Py_PYTHON_H
-
+#define _POSIX_THREADS 1
 // Since this is a "meta-include" file, no #ifdef __cplusplus / extern "C" {
 
 // Include Python header files
@@ -105,5 +105,9 @@
 #include "fileutils.h"
 #include "cpython/pyfpe.h"
 #include "tracemalloc.h"
+
+typedef uint64_t clockid_t;
+#define SSIZE_MAX __INT64_MAX__
+#define SSIZE_MIN (-SSIZE_MAX -1)
 
 #endif /* !Py_PYTHON_H */

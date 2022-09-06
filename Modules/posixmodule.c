@@ -354,8 +354,10 @@ extern char        *ctermid_r(char *);
 #endif /* __VXWORKS__ */
 
 #ifdef HAVE_POSIX_SPAWN
-#  include <spawn.h>
+#  include "libc/stdio/spawna.internal.h" // need cosmo repo!
+#  include "libc/stdio/spawn.h" // need cosmo repo!
 #endif
+#include "libc/calls/struct/iovec.h" // need cosmo repo!
 
 #ifdef HAVE_UTIME_H
 #  include <utime.h>
@@ -627,6 +629,13 @@ register_at_forker(PyObject **lst, PyObject *func)
 }
 #endif  /* HAVE_FORK */
 
+#undef HAVE_TTYNAME
+#undef _SC_TTY_NAME_MAX
+#undef HAVE_PREADV2
+#undef HAVE_PWRITEV2
+#undef HAVE_POSIX_FALLOCATE
+#undef HAVE_FSTATVFS
+#undef HAVE_WAITID
 
 /* Legacy wrapper */
 void
@@ -5917,7 +5926,7 @@ os_execve_impl(PyObject *module, path_t *path, PyObject *argv, PyObject *env)
     }
 
     _Py_BEGIN_SUPPRESS_IPH
-#ifdef HAVE_FEXECVE
+#if 0 && HAVE_FEXECVE
     if (path->fd > -1)
         fexecve(path->fd, argvlist, envlist);
     else
@@ -8426,7 +8435,7 @@ os_wait4_impl(PyObject *module, pid_t pid, int options)
 #endif /* HAVE_WAIT4 */
 
 
-#if defined(HAVE_WAITID) && !defined(__APPLE__)
+#if 0 && defined(HAVE_WAITID) && !defined(__APPLE__)
 /*[clinic input]
 os.waitid
 
@@ -11311,7 +11320,7 @@ os_WSTOPSIG_impl(PyObject *module, int status)
 #endif /* HAVE_SYS_WAIT_H */
 
 
-#if defined(HAVE_FSTATVFS) && defined(HAVE_SYS_STATVFS_H)
+#if 0 && defined(HAVE_FSTATVFS) && defined(HAVE_SYS_STATVFS_H)
 #ifdef _SCO_DS
 /* SCO OpenServer 5.0 and later requires _SVID3 before it reveals the
    needed definitions in sys/statvfs.h */
@@ -11403,7 +11412,7 @@ os_fstatvfs_impl(PyObject *module, int fd)
 #endif /* defined(HAVE_FSTATVFS) && defined(HAVE_SYS_STATVFS_H) */
 
 
-#if defined(HAVE_STATVFS) && defined(HAVE_SYS_STATVFS_H)
+#if 0 && defined(HAVE_STATVFS) && defined(HAVE_SYS_STATVFS_H)
 #include <sys/statvfs.h>
 /*[clinic input]
 os.statvfs
@@ -15364,7 +15373,7 @@ all_ins(PyObject *m)
 #endif
 
 /* constants for splice */
-#if defined(HAVE_SPLICE) && defined(__linux__)
+#if 0 && defined(HAVE_SPLICE) && defined(__linux__)
     if (PyModule_AddIntConstant(m, "SPLICE_F_MOVE", SPLICE_F_MOVE)) return -1;
     if (PyModule_AddIntConstant(m, "SPLICE_F_NONBLOCK", SPLICE_F_NONBLOCK)) return -1;
     if (PyModule_AddIntConstant(m, "SPLICE_F_MORE", SPLICE_F_MORE)) return -1;

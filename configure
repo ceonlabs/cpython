@@ -8066,7 +8066,7 @@ UNIVERSAL_ARCH_FLAGS=
 # tweak BASECFLAGS based on compiler and platform
 case $GCC in
 yes)
-    CFLAGS_NODIST="$CFLAGS_NODIST -std=c11"
+    CFLAGS_NODIST="$CFLAGS_NODIST"
 
 
 

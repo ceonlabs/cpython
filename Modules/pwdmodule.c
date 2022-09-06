@@ -4,6 +4,8 @@
 #include "Python.h"
 #include "posixmodule.h"
 
+#undef HAVE_GETPWUID_R
+#undef HAVE_GETPWNAM_R
 #include <pwd.h>
 
 #include "clinic/pwdmodule.c.h"

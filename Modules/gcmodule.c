@@ -23,6 +23,10 @@
 
 */
 
+#ifdef unreachable
+#define __unreachable unreachable
+#undef unreachable
+#endif
 #include "Python.h"
 #include "pycore_context.h"
 #include "pycore_initconfig.h"

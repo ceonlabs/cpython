@@ -6,6 +6,11 @@
 #include "pycore_namespace.h"     // _PyNamespace_New()
 #include "pycore_runtime.h"       // _Py_ID()
 
+#undef HAVE_CLOCK_SETTIME
+#undef HAVE_NANOSLEEP
+#undef HAVE_CLOCK_NANOSLEEP
+#define HAVE_TIMEGM 1
+
 #include <ctype.h>
 
 #ifdef HAVE_SYS_TIMES_H

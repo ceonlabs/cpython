@@ -118,21 +118,47 @@ static void faulthandler_user(int signum);
 #endif /* FAULTHANDLER_USER */
 
 
-static fault_handler_t faulthandler_handlers[] = {
-#ifdef SIGBUS
-    {SIGBUS, 0, "Bus error", },
-#endif
-#ifdef SIGILL
-    {SIGILL, 0, "Illegal instruction", },
-#endif
-    {SIGFPE, 0, "Floating point exception", },
-    {SIGABRT, 0, "Aborted", },
-    /* define SIGSEGV at the end to make it the default choice if searching the
-       handler fails in faulthandler_fatal_error() */
-    {SIGSEGV, 0, "Segmentation fault", }
-};
+static fault_handler_t faulthandler_handlers[5];
 static const size_t faulthandler_nsignals = \
     Py_ARRAY_LENGTH(faulthandler_handlers);
+
+static void faulthandler_handlers_init() {
+    fault_handler_t local_handlers[] = {
+#ifdef SIGBUS
+        {
+            SIGBUS,
+            0,
+            "Bus error",
+        },
+#endif
+#ifdef SIGILL
+        {
+            SIGILL,
+            0,
+            "Illegal instruction",
+        },
+#endif
+        {
+            SIGFPE,
+            0,
+            "Floating point exception",
+        },
+        {
+            SIGABRT,
+            0,
+            "Aborted",
+        },
+        /* define SIGSEGV at the end to make it the default choice if searching
+           the handler fails in faulthandler_fatal_error() */
+        {
+            SIGSEGV,
+            0,
+            "Segmentation fault",
+        }};
+    _Static_assert(sizeof(faulthandler_handlers) == sizeof(local_handlers),
+                   "handler alloc error");
+    memcpy(faulthandler_handlers, local_handlers, sizeof(local_handlers));
+}
 
 #ifdef FAULTHANDLER_USE_ALT_STACK
 static stack_t stack;
@@ -1356,6 +1382,7 @@ faulthandler_init_enable(void)
 PyStatus
 _PyFaulthandler_Init(int enable)
 {
+    faulthandler_handlers_init();
 #ifdef FAULTHANDLER_USE_ALT_STACK
     memset(&stack, 0, sizeof(stack));
     stack.ss_flags = 0;
@@ -1363,7 +1390,7 @@ _PyFaulthandler_Init(int enable)
        SIGSTKSZ bytes. Calling the previous signal handler in faulthandler
        signal handler uses more than SIGSTKSZ bytes of stack memory on some
        platforms. */
-    stack.ss_size = SIGSTKSZ * 2;
+    stack.ss_size = STACKSIZE * 2;
 #ifdef AT_MINSIGSTKSZ
     /* bpo-46968: Query Linux for minimal stack size to ensure signal delivery
        for the hardware running CPython. This OS feature is available in

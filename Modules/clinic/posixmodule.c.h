@@ -1,3 +1,11 @@
+#undef HAVE_TTYNAME
+#undef _SC_TTY_NAME_MAX
+#undef HAVE_PREADV2
+#undef HAVE_PWRITEV2
+#undef HAVE_POSIX_FALLOCATE
+#undef HAVE_FSTATVFS
+#undef HAVE_WAITID
+
 /*[clinic input]
 preserve
 [clinic start generated code]*/
@@ -6924,7 +6932,7 @@ exit:
 
 #endif /* (defined(HAVE_FSTATVFS) && defined(HAVE_SYS_STATVFS_H)) */
 
-#if (defined(HAVE_STATVFS) && defined(HAVE_SYS_STATVFS_H))
+#if 0 && (defined(HAVE_STATVFS) && defined(HAVE_SYS_STATVFS_H))
 
 PyDoc_STRVAR(os_statvfs__doc__,
 "statvfs($module, /, path)\n"

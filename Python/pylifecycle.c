@@ -82,12 +82,12 @@ int _Py_UnhandledKeyboardInterrupt = 0;
  * interpreter state for various runtime debugging tools, but is *not* an
  * officially supported feature */
 
-#if defined(MS_WINDOWS)
+#if 0 && defined(MS_WINDOWS)
 
 #pragma section("PyRuntime", read, write)
 __declspec(allocate("PyRuntime"))
 
-#elif defined(__APPLE__)
+#elif 0 && defined(__APPLE__)
 
 __attribute__((
     section(SEG_DATA ",PyRuntime")
@@ -99,7 +99,7 @@ __attribute__((
 _Py_COMP_DIAG_PUSH
 _Py_COMP_DIAG_IGNORE_DEPR_DECLS
 _PyRuntimeState _PyRuntime
-#if defined(__linux__) && (defined(__GNUC__) || defined(__clang__))
+#if 0 && defined(__linux__) && (defined(__GNUC__) || defined(__clang__))
 __attribute__ ((section (".PyRuntime")))
 #endif
 = _PyRuntimeState_INIT;

@@ -40,6 +40,7 @@
 #include "io.h"
 #include "typearith.h"
 
+#include "libc/str/unicode.h"
 
 /* This file contains functions for decimal <-> string conversions, including
    PEP-3101 formatting for numeric types. */

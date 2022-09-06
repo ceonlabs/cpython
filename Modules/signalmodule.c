@@ -15,6 +15,10 @@
 #include "pycore_pystate.h"       // _PyThreadState_GET()
 #include "pycore_signal.h"        // Py_NSIG
 
+#undef HAVE_SIGTIMEDWAIT
+#undef HAVE_SIGWAITINFO
+#undef HAVE_SIGWAIT
+
 #ifndef MS_WINDOWS
 #  include "posixmodule.h"
 #endif
