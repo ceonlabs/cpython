@@ -3046,10 +3046,10 @@ _PySys_UpdateConfig(PyThreadState *tstate)
 
     COPY_WSTR("executable", config->executable);
     COPY_WSTR("_base_executable", config->base_executable);
-    COPY_WSTR("prefix", config->prefix);
-    COPY_WSTR("base_prefix", config->base_prefix);
-    COPY_WSTR("exec_prefix", config->exec_prefix);
-    COPY_WSTR("base_exec_prefix", config->base_exec_prefix);
+    COPY_WSTR("prefix", L"./");
+    COPY_WSTR("base_prefix", L"./");
+    COPY_WSTR("exec_prefix", L"./");
+    COPY_WSTR("base_exec_prefix", L"./");
     COPY_WSTR("platlibdir", config->platlibdir);
 
     if (config->pycache_prefix != NULL) {
@@ -3209,6 +3209,7 @@ makepathobject(const wchar_t *path, wchar_t delim)
 
     n = 1;
     p = path;
+    printf("%ls\n", path);
     while ((p = wcschr(p, delim)) != NULL) {
         n++;
         p++;
@@ -3216,6 +3217,7 @@ makepathobject(const wchar_t *path, wchar_t delim)
     v = PyList_New(n);
     if (v == NULL)
         return NULL;
+    PyList_SET_ITEM(v, 0, PyUnicode_FromString("./Lib"));
     for (i = 0; ; i++) {
         p = wcschr(path, delim);
         if (p == NULL)
@@ -3225,7 +3227,7 @@ makepathobject(const wchar_t *path, wchar_t delim)
             Py_DECREF(v);
             return NULL;
         }
-        PyList_SET_ITEM(v, i, w);
+        PyList_SET_ITEM(v, i+1, w);
         if (*p == '\0')
             break;
         path = p+1;

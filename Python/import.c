@@ -126,7 +126,7 @@ _PyImport_AcquireLock(void)
         !PyThread_acquire_lock(import_lock, 0))
     {
         PyThreadState *tstate = PyEval_SaveThread();
-        PyThread_acquire_lock(import_lock, WAIT_LOCK);
+        // PyThread_acquire_lock(import_lock, WAIT_LOCK);
         PyEval_RestoreThread(tstate);
     }
     assert(import_lock_level == 0);
