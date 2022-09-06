@@ -36,7 +36,7 @@ LD_LIBRARY_PATH="" ./configure \
     CCSHARED="" \
     LINKFORSHARED="" \
     PKG_CONFIG="" \
-    CFLAGS="-Wall -Wno-strict-prototypes -Wno-unused-value \
+    CFLAGS="-O2 -g3 -Wall -Wno-strict-prototypes -Wno-unused-value \
       -static -fno-pie -fno-omit-frame-pointer \
       -mno-red-zone -pg \
       -nostdinc -nostdlib \
@@ -54,7 +54,7 @@ LD_LIBRARY_PATH="" ./configure \
       $COSMO_LIBDIR/crt.o \
       $COSMO_LIBDIR/ape-no-modify-self.o \
       $COSMO_LIBDIR/cosmopolitan.a" \
-    CFLAGS_NODIST="-Wall -Wno-strict-prototypes -Wno-unused-value \
+    CFLAGS_NODIST="-O2 -g3 -Wall -Wno-strict-prototypes -Wno-unused-value \
       -static -fno-pie -fno-omit-frame-pointer \
       -mno-red-zone -pg \
       -nostdinc -nostdlib \

@@ -15809,7 +15809,7 @@ if ${ac_cv_lib_resolv_inet_aton+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lresolv  $LIBS"
+LIBS="$LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -15844,7 +15844,7 @@ if test "x$ac_cv_lib_resolv_inet_aton" = xyes; then :
 #define HAVE_LIBRESOLV 1
 _ACEOF
 
-  LIBS="-lresolv $LIBS"
+  LIBS="$LIBS"
 
 fi
 

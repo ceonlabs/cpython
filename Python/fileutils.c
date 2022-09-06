@@ -205,7 +205,7 @@ check_force_ascii(void)
         return 0;
     }
 
-#if defined(HAVE_LANGINFO_H) && defined(CODESET)
+#if 0 && defined(HAVE_LANGINFO_H) && defined(CODESET)
     const char *codeset = nl_langinfo(CODESET);
     if (!codeset || codeset[0] == '\0') {
         /* CODESET is not set or empty */
@@ -902,7 +902,7 @@ _Py_GetLocaleEncoding(void)
     encoding[Py_ARRAY_LENGTH(encoding) - 1] = 0;
     return _PyMem_RawWcsdup(encoding);
 #else
-    const char *encoding = nl_langinfo(CODESET);
+    const char *encoding = NULL; // nl_langinfo(CODESET);
     if (!encoding || encoding[0] == '\0') {
         // Use UTF-8 if nl_langinfo() returns an empty string. It can happen on
         // macOS if the LC_CTYPE locale is not supported.
