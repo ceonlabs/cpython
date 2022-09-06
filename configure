@@ -11918,7 +11918,7 @@ if test "x$with_system_expat" = xyes; then :
 else
 
   LIBEXPAT_CFLAGS="-I\$(srcdir)/Modules/expat"
-  LIBEXPAT_LDFLAGS="-lm \$(LIBEXPAT_A)"
+  LIBEXPAT_LDFLAGS="\$(LIBEXPAT_A)"
   LIBEXPAT_INTERNAL="\$(LIBEXPAT_A)"
 
 fi
@@ -11992,7 +11992,7 @@ if test "x$with_system_libmpdec" = xyes; then :
 else
 
   LIBMPDEC_CFLAGS="-I\$(srcdir)/Modules/_decimal/libmpdec"
-  LIBMPDEC_LDFLAGS="-lm \$(LIBMPDEC_A)"
+  LIBMPDEC_LDFLAGS="\$(LIBMPDEC_A)"
   LIBMPDEC_INTERNAL="\$(LIBMPDEC_A)"
 
     if test "x$with_pydebug" = xyes; then :
