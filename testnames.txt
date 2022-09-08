@@ -113,7 +113,7 @@ test_dictviews
 test_difflib
 test_dis
 # test_distutils
-# test_docxmlrpc
+test_docxmlrpc
 test_dtrace
 test_dynamic
 test_dynamicclassattribute
@@ -121,10 +121,10 @@ test_eintr
 test_email
 test_embed
 test_ensurepip
-# test_enum
+test_enum
 test_enumerate
 test_eof
-# test_epoll
+test_epoll
 test_errno
 test_except_star
 test_exception_group
@@ -175,7 +175,7 @@ test_graphlib
 test_grp
 test_gzip
 test_hash
-# test_hashlib
+test_hashlib
 test_heapq
 test_hmac
 test_html
@@ -183,7 +183,7 @@ test_htmlparser
 test_http_cookiejar
 test_http_cookies
 test_httplib
-# test_httpservers
+test_httpservers
 test_idle
 # test_imaplib
 test_imghdr
@@ -214,7 +214,7 @@ test_list
 test_listcomps
 test_lltrace
 test_locale
-# test_logging # passes if run individually
+test_logging # passes if run individually
 test_long
 test_longexp
 test_lzma
@@ -338,7 +338,7 @@ test_struct
 test_structmembers
 test_structseq
 test_subclassinit
-test_subprocess
+# test_subprocess
 test_sunau
 test_sundry
 test_super
@@ -355,11 +355,11 @@ test_tcl
 # test_telnetlib
 test_tempfile
 test_textwrap
-test_thread
+# test_thread
 test_threadedtempfile
-test_threading
-test_threading_local
-test_threadsignals
+# test_threading
+# test_threading_local
+# test_threadsignals
 test_time
 test_timeit
 test_timeout
