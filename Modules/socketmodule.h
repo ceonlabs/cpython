@@ -8,7 +8,10 @@
 #   include <sys/socket.h>
 # endif
 # include <netinet/in.h>
-# include <netinet/tcp.h>
+// # include <netinet/tcp.h>
+#define SOMAXCONN 127
+#define HAVE_GETADDRINFO 1
+#define IPPROTO_MAX 255
 
 #else /* MS_WINDOWS */
 # include <winsock2.h>

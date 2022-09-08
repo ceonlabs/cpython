@@ -405,7 +405,7 @@ remove_unusable_flags(PyObject *m)
    * EAI_* constants are defined in (the already included) ws2tcpip.h.
    */
 #else
-#  include "addrinfo.h"
+// #  include "addrinfo.h"
 #endif
 
 #ifdef __APPLE__
@@ -1813,7 +1813,7 @@ getsockaddrarg(PySocketSockObject *s, PyObject *args,
 #endif /* AF_VSOCK */
 
 
-#ifdef AF_RDS
+#if 0 && AF_RDS
     case AF_RDS:
         /* RDS sockets use sockaddr_in: fall-through */
 #endif /* AF_RDS */
@@ -2441,7 +2441,7 @@ getsockaddrlen(PySocketSockObject *s, socklen_t *len_ret)
        }
 #endif /* AF_VSOCK */
 
-#ifdef AF_RDS
+#if 0 && AF_RDS
     case AF_RDS:
         /* RDS sockets use sockaddr_in: fall-through */
 #endif /* AF_RDS */

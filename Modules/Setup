@@ -144,7 +144,7 @@ _opcode _opcode.c
 _pickle _pickle.c
 _queue _queuemodule.c
 _random _randommodule.c
-# _socket socketmodule.c
+_socket socketmodule.c
 _statistics _statisticsmodule.c
 _struct _struct.c
 _typing _typingmodule.c
@@ -193,7 +193,7 @@ syslog syslogmodule.c
 
 # Modules with UNIX dependencies that require external libraries
 
-#_crypt _cryptmodule.c -lcrypt
+_crypt _cryptmodule.c #-lcrypt
 #nis nismodule.c -I/usr/include/tirpc -lnsl -ltirpc
 
 # Modules that require external libraries.
