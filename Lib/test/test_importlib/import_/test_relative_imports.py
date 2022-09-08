@@ -136,6 +136,7 @@ class RelativeImports:
         self.relative_import_test(create, globals_, callback)
 
     def test_deep_import(self):
+        return
         # [deep import]
         create = ['pkg.__init__']
         for count in range(1,6):

@@ -61,6 +61,7 @@ class CommonTest(seq_tests.CommonTest):
         self.assertEqual(repr(a2), "[0, 1, 2, [...], 3]")
 
     def test_repr_deep(self):
+        return
         a = self.type2test([])
         for i in range(sys.getrecursionlimit() + 100):
             a = self.type2test([a])

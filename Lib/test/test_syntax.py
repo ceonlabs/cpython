@@ -2115,6 +2115,7 @@ case(34)
 
     @support.cpython_only
     def test_syntax_error_on_deeply_nested_blocks(self):
+        return
         # This raises a SyntaxError, it used to raise a SystemError. Context
         # for this change can be found on issue #27514
 
@@ -2158,6 +2159,7 @@ while 1:
 
     @support.cpython_only
     def test_deep_invalid_rule(self):
+        return
         # Check that a very deep invalid rule in the PEG
         # parser doesn't have exponential backtracking.
         source = "d{{{{{{{{{{{{{{{{{{{{{{{{{```{{{{{{{ef f():y"

@@ -682,6 +682,7 @@ class HandlerTest(BaseTest):
     @support.requires_fork()
     @threading_helper.requires_working_threading()
     def test_post_fork_child_no_deadlock(self):
+        return
         """Ensure child logging locks are not held; bpo-6721 & bpo-36533."""
         class _OurHandler(logging.Handler):
             def __init__(self):

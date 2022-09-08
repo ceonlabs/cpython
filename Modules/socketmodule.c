@@ -109,6 +109,7 @@ Local naming conventions:
 #include "Python.h"
 #include "pycore_fileutils.h"     // _Py_set_inheritable()
 #include "structmember.h"         // PyMemberDef
+#include "libc/sysv/consts/tcp.h"
 
 #ifdef _Py_MEMORY_SANITIZER
 # include <sanitizer/msan_interface.h>
@@ -8292,7 +8293,7 @@ PyInit__socket(void)
 #endif
 
     /* TCP options */
-#ifdef  TCP_NODELAY
+#ifdef TCP_NODELAY
     PyModule_AddIntMacro(m, TCP_NODELAY);
 #endif
 #ifdef  TCP_MAXSEG
