@@ -300,9 +300,9 @@ _close_open_fds_safe(int start_fd, PyObject* py_fds_to_keep)
     } else {
         char buffer[sizeof(struct linux_dirent64)];
         int bytes;
-        while ((bytes = syscall(SYS_getdents64, fd_dir_fd,
+        while ((bytes = getdents(fd_dir_fd,
                                 (struct linux_dirent64 *)buffer,
-                                sizeof(buffer))) > 0) {
+                                sizeof(buffer), NULL)) > 0) {
             struct linux_dirent64 *entry;
             int offset;
 #ifdef _Py_MEMORY_SANITIZER
