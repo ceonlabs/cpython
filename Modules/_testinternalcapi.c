@@ -47,6 +47,9 @@ get_recursion_depth(PyObject *self, PyObject *Py_UNUSED(args))
 static PyObject*
 test_bswap(PyObject *self, PyObject *Py_UNUSED(args))
 {
+#define UINT16_C(x) ((uint16_t)(x))
+#define UINT32_C(x) ((uint32_t)(x))
+#define UINT64_C(x) ((uint64_t)(x))
     uint16_t u16 = _Py_bswap16(UINT16_C(0x3412));
     if (u16 != UINT16_C(0x1234)) {
         PyErr_Format(PyExc_AssertionError,
@@ -395,11 +398,12 @@ normalize_path(PyObject *self, PyObject *filename)
     return result;
 }
 
+#ifndef Py_BUILD_CORE
 static PyObject *
 get_getpath_codeobject(PyObject *self, PyObject *Py_UNUSED(args)) {
     return _Py_Get_Getpath_CodeObject();
 }
-
+#endif
 
 static PyObject *
 encode_locale_ex(PyObject *self, PyObject *args)
@@ -538,7 +542,9 @@ static PyMethodDef TestMethods[] = {
     {"test_atomic_funcs", test_atomic_funcs, METH_NOARGS},
     {"test_edit_cost", test_edit_cost, METH_NOARGS},
     {"normalize_path", normalize_path, METH_O, NULL},
+#ifndef Py_BUILD_CORE
     {"get_getpath_codeobject", get_getpath_codeobject, METH_NOARGS, NULL},
+#endif
     {"EncodeLocaleEx", encode_locale_ex, METH_VARARGS},
     {"DecodeLocaleEx", decode_locale_ex, METH_VARARGS},
     {"set_eval_frame_default", set_eval_frame_default, METH_NOARGS, NULL},

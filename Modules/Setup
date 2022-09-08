@@ -272,25 +272,25 @@ _crypt _cryptmodule.c #-lcrypt
 
 # Examples
 
-#xx xxmodule.c
-#xxlimited xxlimited.c
-#xxlimited_35 xxlimited_35.c
+xx xxmodule.c
+xxlimited xxlimited.c
+xxlimited_35 xxlimited_35.c
 xxsubtype xxsubtype.c  # Required for the test suite to pass!
 
 # Testing
 
-#_xxsubinterpreters _xxsubinterpretersmodule.c
-#_xxtestfuzz _xxtestfuzz/_xxtestfuzz.c _xxtestfuzz/fuzzer.c
-#_testbuffer _testbuffer.c
-#_testinternalcapi _testinternalcapi.c
+_xxsubinterpreters _xxsubinterpretersmodule.c
+_xxtestfuzz _xxtestfuzz/_xxtestfuzz.c _xxtestfuzz/fuzzer.c
+_testbuffer _testbuffer.c
+_testinternalcapi _testinternalcapi.c
 
 # Some testing modules MUST be built as shared libraries.
 
 #*shared*
 #_ctypes_test _ctypes/_ctypes_test.c
-#_testcapi _testcapimodule.c
-#_testimportmultiple _testimportmultiple.c
-#_testmultiphase _testmultiphase.c
+_testcapi _testcapimodule.c
+# _testimportmultiple _testimportmultiple.c
+# _testmultiphase _testmultiphase.c
 
 # ---
 # Uncommenting the following line tells makesetup that all following modules
