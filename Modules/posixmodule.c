@@ -18,7 +18,7 @@
 #  include <pathcch.h>
 #endif
 
-#include "/home/x/c/cosmopolitan/libc/thread/pthread_kill.c"
+#include "libc/thread/pthread_kill.c"
 
 #ifdef __VXWORKS__
 #  include "pycore_bitutils.h"    // _Py_popcount32()
