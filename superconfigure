@@ -1,7 +1,7 @@
 #! /bin/sh 
 set -eux
 
-COSMO_LIBDIR=$(realpath "../libcosmo/")
+COSMO_LIBDIR=$(realpath "../testing/cosmopolitan/o")
 COSMO_REPODIR=$(realpath "../testing/cosmopolitan")
 EXTRA_STUBS=$(realpath "./header_stubs")
 CC="./gcc-wrapper.bash"
@@ -21,7 +21,7 @@ LD_LIBRARY_PATH="" ./configure \
     --prefix="" \
     --disable-shared --disable-profiling \
     --disable-ipv6 --disable-optimizations \
-    --disable-pystats --disable-loadable-sqlite-extensions \
+    --disable-pystats --enable-loadable-sqlite-extensions=no \
     --disable-test-modules  \
     --with-pkg-config=no  \
     --with-static-libpython \
@@ -50,10 +50,12 @@ LD_LIBRARY_PATH="" ./configure \
       -fno-pie -mno-red-zone" \
     LIBS="\
       -fuse-ld=bfd \
-      -Wl,-T,$COSMO_LIBDIR/ape.lds \
-      $COSMO_LIBDIR/crt.o \
-      $COSMO_LIBDIR/ape-no-modify-self.o \
+      -Wl,-T,$COSMO_LIBDIR/ape/ape.lds \
+      $COSMO_LIBDIR/libc/crt/crt.o \
+      $COSMO_LIBDIR/ape/ape-no-modify-self.o \
       $COSMO_LIBDIR/cosmopolitan.a" \
+    LIBSQLITE3_CFLAGS="-I$COSMO_REPODIR/third_party/sqlite3"\
+    LIBSQLITE3_LIBS="-L$COSMO_LIBDIR/third_party/sqlite3 -lsqlite3" \
     CFLAGS_NODIST="-O2 -g3 -Wall -Wno-strict-prototypes -Wno-unused-value \
       -static -fno-pie -fno-omit-frame-pointer \
       -mno-red-zone -pg \

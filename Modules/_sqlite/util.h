@@ -26,7 +26,7 @@
 #define PY_SSIZE_T_CLEAN
 #include "Python.h"
 #include "pythread.h"
-#include "sqlite3.h"
+#include "third_party/sqlite3/sqlite3.h" // needs cosmo repo!
 #include "connection.h"
 
 /**

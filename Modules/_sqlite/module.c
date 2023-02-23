@@ -120,7 +120,7 @@ pysqlite_enable_shared_cache_impl(PyObject *module, int do_enable)
 {
     int rc;
 
-    rc = sqlite3_enable_shared_cache(do_enable);
+    rc = SQLITE_ERROR; // sqlite3_enable_shared_cache(do_enable);
 
     if (rc != SQLITE_OK) {
         pysqlite_state *state = pysqlite_get_state(module);

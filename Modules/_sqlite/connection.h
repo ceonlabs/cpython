@@ -30,7 +30,7 @@
 
 #include "module.h"
 
-#include "sqlite3.h"
+#include "third_party/sqlite3/sqlite3.h" // needs cosmo repo!
 
 typedef struct _callback_context
 {

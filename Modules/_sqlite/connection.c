@@ -1513,7 +1513,7 @@ pysqlite_connection_enable_load_extension_impl(pysqlite_Connection *self,
         return NULL;
     }
 
-    rc = sqlite3_enable_load_extension(self->db, onoff);
+    rc = SQLITE_ERROR; // sqlite3_enable_load_extension(self->db, onoff);
 
     if (rc != SQLITE_OK) {
         PyErr_SetString(self->OperationalError,
@@ -1549,7 +1549,7 @@ pysqlite_connection_load_extension_impl(pysqlite_Connection *self,
         return NULL;
     }
 
-    rc = sqlite3_load_extension(self->db, extension_name, 0, &errmsg);
+    rc = SQLITE_ERROR; // sqlite3_load_extension(self->db, extension_name, 0, &errmsg);
     if (rc != 0) {
         PyErr_SetString(self->OperationalError, errmsg);
         return NULL;

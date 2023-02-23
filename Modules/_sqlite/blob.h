@@ -2,7 +2,7 @@
 #define PYSQLITE_BLOB_H
 
 #include "Python.h"
-#include "sqlite3.h"
+#include "third_party/sqlite3/sqlite3.h" // needs cosmo repo!
 #include "connection.h"
 
 #define BLOB_SEEK_START 0

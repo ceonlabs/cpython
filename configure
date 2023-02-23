@@ -12736,11 +12736,11 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char sqlite3_enable_shared_cache ();
+// char sqlite3_enable_shared_cache ();
 int
 main ()
 {
-return sqlite3_enable_shared_cache ();
+// return sqlite3_enable_shared_cache ();
   ;
   return 0;
 }
@@ -13093,11 +13093,11 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char sqlite3_load_extension ();
+// char sqlite3_load_extension ();
 int
 main ()
 {
-return sqlite3_load_extension ();
+// return sqlite3_load_extension ();
   ;
   return 0;
 }
