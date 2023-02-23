@@ -354,8 +354,8 @@ extern char        *ctermid_r(char *);
 #endif /* __VXWORKS__ */
 
 #ifdef HAVE_POSIX_SPAWN
-#  include "libc/stdio/spawna.internal.h" // need cosmo repo!
-#  include "libc/stdio/spawn.h" // need cosmo repo!
+#  include "libc/stdio/posix_spawn.internal.h" // need cosmo repo!
+#  include "libc/stdio/posix_spawn.h" // need cosmo repo!
 #endif
 #include "libc/calls/struct/iovec.h" // need cosmo repo!
 

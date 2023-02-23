@@ -106,7 +106,6 @@
 #include "cpython/pyfpe.h"
 #include "tracemalloc.h"
 
-typedef uint64_t clockid_t;
 #define SSIZE_MAX __INT64_MAX__
 #define SSIZE_MIN (-SSIZE_MAX -1)
 

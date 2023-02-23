@@ -2,7 +2,7 @@
 set -eux
 
 COSMO_LIBDIR=$(realpath "../libcosmo/")
-COSMO_REPODIR=$(realpath "../libcosmo/testing/cosmopolitan")
+COSMO_REPODIR=$(realpath "../testing/cosmopolitan")
 EXTRA_STUBS=$(realpath "./header_stubs")
 CC="./gcc-wrapper.bash"
 
