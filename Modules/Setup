@@ -205,7 +205,7 @@ _crypt _cryptmodule.c #-lcrypt
 #_gdbm _gdbmmodule.c -lgdbm
 #_lzma _lzmamodule.c -llzma
 #_uuid _uuidmodule.c -luuid
-# zlib  zlibmodule.c -lz
+zlib  zlibmodule.c # -lz
 
 # The readline module also supports libeditline (-leditline).
 # Some systems may require -ltermcap or -ltermlib.
