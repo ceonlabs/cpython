@@ -81,8 +81,9 @@ def register(connection):
     connection.create_aggregate("VAR_POP", 1, VarPop)
     connection.create_aggregate("VAR_SAMP", 1, VarSamp)
     # Some math functions are enabled by default in SQLite 3.35+.
+    # yeah no I don't want them
     sql = "select sqlite_compileoption_used('ENABLE_MATH_FUNCTIONS')"
-    if not connection.execute(sql).fetchone()[0]:
+    if False and not connection.execute(sql).fetchone()[0]:
         create_deterministic_function("ACOS", 1, _sqlite_acos)
         create_deterministic_function("ASIN", 1, _sqlite_asin)
         create_deterministic_function("ATAN", 1, _sqlite_atan)
