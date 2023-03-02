@@ -15,6 +15,15 @@
 // specific language governing permissions and limitations
 // under the License.
 
+#define INT8_C(c)   __INT8_C(c)
+#define UINT8_C(c)  __UINT8_C(c)
+#define INT16_C(c)  __INT16_C(c)
+#define UINT16_C(c) __UINT16_C(c)
+#define INT32_C(c)  __INT32_C(c)
+#define UINT32_C(c) __UINT32_C(c)
+#define INT64_C(c)  __INT64_C(c)
+#define UINT64_C(c) __UINT64_C(c)
+
 #include "arrow/dataset/scanner.h"
 
 #include <memory>

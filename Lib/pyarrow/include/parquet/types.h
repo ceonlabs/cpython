@@ -573,6 +573,16 @@ struct FixedLenByteArray {
 
 using FLBA = FixedLenByteArray;
 
+// Taken from cosmo
+#define INT8_C(c)   __INT8_C(c)
+#define UINT8_C(c)  __UINT8_C(c)
+#define INT16_C(c)  __INT16_C(c)
+#define UINT16_C(c) __UINT16_C(c)
+#define INT32_C(c)  __INT32_C(c)
+#define UINT32_C(c) __UINT32_C(c)
+#define INT64_C(c)  __INT64_C(c)
+#define UINT64_C(c) __UINT64_C(c)
+
 // Julian day at unix epoch.
 //
 // The Julian Day Number (JDN) is the integer assigned to a whole solar day in

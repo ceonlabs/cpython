@@ -1829,21 +1829,17 @@ class ArrayStreamBatchReader : public RecordBatchReader {
       return Status::OK();
     }
     StatusCode code;
-    switch (errno_like) {
-      case EDOM:
-      case EINVAL:
-      case ERANGE:
-        code = StatusCode::Invalid;
-        break;
-      case ENOMEM:
-        code = StatusCode::OutOfMemory;
-        break;
-      case ENOSYS:
-        code = StatusCode::NotImplemented;
-      default:
-        code = StatusCode::IOError;
-        break;
-    }
+    
+    // Under Cosmopolitan Libc, the error codes are not constants and switch cannot be used.
+    // default
+    code = StatusCode::IOError;
+    
+    if (errno_like == EDOM){ code = StatusCode::Invalid; };
+    if (errno_like == EINVAL){ code = StatusCode::Invalid; };
+    if (errno_like == ERANGE){ code = StatusCode::Invalid; };
+    if (errno_like == ENOMEM){ code = StatusCode::OutOfMemory; };
+    if (errno_like == ENOSYS){ code = StatusCode::NotImplemented; };
+    
     const char* last_error = stream->get_last_error(stream);
     return {code, last_error ? std::string(last_error) : ""};
   }
