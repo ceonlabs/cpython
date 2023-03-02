@@ -25,6 +25,7 @@
 
 #include "arrow/util/macros.h"
 
+
 namespace arrow {
 namespace util {
 
