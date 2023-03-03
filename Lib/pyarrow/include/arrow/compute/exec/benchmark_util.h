@@ -15,8 +15,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-#pragma once
-
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -33,16 +31,14 @@ namespace compute {
 
 Status BenchmarkNodeOverhead(benchmark::State& state, int32_t num_batches,
                              int32_t batch_size, arrow::compute::BatchesWithSchema data,
-                             std::vector<arrow::compute::Declaration>& node_declarations,
-                             arrow::MemoryPool* pool = default_memory_pool());
+                             std::vector<arrow::compute::Declaration>& node_declarations);
 
 Status BenchmarkIsolatedNodeOverhead(benchmark::State& state,
                                      arrow::compute::Expression expr, int32_t num_batches,
                                      int32_t batch_size,
                                      arrow::compute::BatchesWithSchema data,
                                      std::string factory_name,
-                                     arrow::compute::ExecNodeOptions& options,
-                                     arrow::MemoryPool* pool = default_memory_pool());
+                                     arrow::compute::ExecNodeOptions& options);
 
 }  // namespace compute
 }  // namespace arrow

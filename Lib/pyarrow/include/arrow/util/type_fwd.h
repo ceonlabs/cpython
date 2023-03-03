@@ -36,11 +36,6 @@ class TaskGroup;
 class ThreadPool;
 class CpuInfo;
 
-namespace tracing {
-
-struct Scope;
-
-}  // namespace tracing
 }  // namespace internal
 
 struct Compression {

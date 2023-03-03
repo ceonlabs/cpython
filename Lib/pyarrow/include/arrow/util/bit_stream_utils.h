@@ -19,9 +19,10 @@
 
 #pragma once
 
+#include <string.h>
+
 #include <algorithm>
 #include <cstdint>
-#include <cstring>
 
 #include "arrow/util/bit_util.h"
 #include "arrow/util/bpacking.h"
@@ -152,7 +153,7 @@ class BitReader {
   /// 'num_bytes'. The value is assumed to be byte-aligned so the stream will
   /// be advanced to the start of the next byte before 'v' is read. Returns
   /// false if there are not enough bytes left.
-  /// Assume the v was stored in buffer_ as a little-endian format
+  /// Assume the v was stored in buffer_ as a litte-endian format
   template <typename T>
   bool GetAligned(int num_bytes, T* v);
 
@@ -317,7 +318,7 @@ inline bool BitReader::GetValue(int num_bits, T* v) {
 template <typename T>
 inline int BitReader::GetBatch(int num_bits, T* v, int batch_size) {
   DCHECK(buffer_ != NULL);
-  DCHECK_LE(num_bits, static_cast<int>(sizeof(T) * 8)) << "num_bits: " << num_bits;
+  DCHECK_LE(num_bits, static_cast<int>(sizeof(T) * 8));
 
   int bit_offset = bit_offset_;
   int byte_offset = byte_offset_;

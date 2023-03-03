@@ -77,9 +77,7 @@ class ARROW_EXPORT NullBuilder : public ArrayBuilder {
 
 /// Base class for all Builders that emit an Array of a scalar numerical type.
 template <typename T>
-class NumericBuilder
-    : public ArrayBuilder,
-      public internal::ArrayBuilderExtraOps<NumericBuilder<T>, typename T::c_type> {
+class NumericBuilder : public ArrayBuilder {
  public:
   using TypeClass = T;
   using value_type = typename T::c_type;
@@ -351,9 +349,7 @@ using DurationBuilder = NumericBuilder<DurationType>;
 
 /// @}
 
-class ARROW_EXPORT BooleanBuilder
-    : public ArrayBuilder,
-      public internal::ArrayBuilderExtraOps<BooleanBuilder, bool> {
+class ARROW_EXPORT BooleanBuilder : public ArrayBuilder {
  public:
   using TypeClass = BooleanType;
   using value_type = bool;

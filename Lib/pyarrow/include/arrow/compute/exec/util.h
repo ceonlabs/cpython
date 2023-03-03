@@ -36,7 +36,6 @@
 #include "arrow/util/logging.h"
 #include "arrow/util/mutex.h"
 #include "arrow/util/thread_pool.h"
-#include "arrow/util/type_fwd.h"
 
 #if defined(__clang__) || defined(__GNUC__)
 #define BYTESWAP(x) __builtin_bswap64(x)
@@ -424,45 +423,6 @@ Result<Expression> ModifyExpression(Expression expr, const PreVisit& pre,
 
   return post_call(std::move(expr), NULLPTR);
 }
-
-/// CRTP helper for tracing helper functions
-
-class ARROW_EXPORT TracedNode {
- public:
-  // All nodes should call TraceStartProducing or NoteStartProducing exactly once
-  // Most nodes will be fine with a call to NoteStartProducing since the StartProducing
-  // call is usually fairly cheap and simply schedules tasks to fetch the actual data.
-
-  explicit TracedNode(ExecNode* node) : node_(node) {}
-
-  // Create a span to record the StartProducing work
-  [[nodiscard]] ::arrow::internal::tracing::Scope TraceStartProducing(
-      std::string extra_details) const;
-
-  // Record a call to StartProducing without creating with a span
-  void NoteStartProducing(std::string extra_details) const;
-
-  // All nodes should call TraceInputReceived for each batch they receive.  This call
-  // should track the time spent processing the batch.  NoteInputReceived is available
-  // but usually won't be used unless a node is simply adding batches to a trivial queue.
-
-  // Create a span to record the InputReceived work
-  [[nodiscard]] ::arrow::internal::tracing::Scope TraceInputReceived(
-      const ExecBatch& batch) const;
-
-  // Record a call to InputReceived without creating with a span
-  void NoteInputReceived(const ExecBatch& batch) const;
-
-  // Create a span to record any "finish" work.  This should NOT be called as part of
-  // InputFinished and many nodes may not need to call this at all.  This should be used
-  // when a node has some extra work that has to be done once it has received all of its
-  // data.  For example, an aggregation node calculating aggregations.  This will
-  // typically be called as a result of InputFinished OR InputReceived.
-  [[nodiscard]] ::arrow::internal::tracing::Scope TraceFinish() const;
-
- private:
-  ExecNode* node_;
-};
 
 }  // namespace compute
 }  // namespace arrow

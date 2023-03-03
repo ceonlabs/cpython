@@ -58,4 +58,3 @@
 
 #include "arrow/compute/exec.h"            // IWYU pragma: export
 #include "arrow/compute/exec/exec_plan.h"  // IWYU pragma: export
-#include "arrow/compute/exec/groupby.h"    // IWYU pragma: export

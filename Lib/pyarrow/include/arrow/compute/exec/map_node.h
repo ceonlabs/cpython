@@ -15,6 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
+/// \brief MapNode is an ExecNode type class which process a task like filter/project
+/// (See SubmitTask method) to each given ExecBatch object, which have one input, one
+/// output, and are pure functions on the input
+///
+/// A simple parallel runner is created with a "map_fn" which is just a function that
+/// takes a batch in and returns a batch.  This simple parallel runner also needs an
+/// executor (use simple synchronous runner if there is no executor)
+
 #pragma once
 
 #include <cstdint>
@@ -34,19 +42,14 @@
 namespace arrow {
 namespace compute {
 
-/// A utility base class for simple exec nodes with one input
-///
-/// Pause/Resume Producing are forwarded appropriately
-/// There is nothing to do in StopProducingImpl
-///
-/// An AtomicCounter is used to keep track of when all data has arrived.  When it
-/// has the Finish() method will be invoked
-class ARROW_EXPORT MapNode : public ExecNode, public TracedNode {
+class ARROW_EXPORT MapNode : public ExecNode {
  public:
   MapNode(ExecPlan* plan, std::vector<ExecNode*> inputs,
           std::shared_ptr<Schema> output_schema);
 
-  Status InputFinished(ExecNode* input, int total_batches) override;
+  void ErrorReceived(ExecNode* input, Status error) override;
+
+  void InputFinished(ExecNode* input, int total_batches) override;
 
   Status StartProducing() override;
 
@@ -54,23 +57,14 @@ class ARROW_EXPORT MapNode : public ExecNode, public TracedNode {
 
   void ResumeProducing(ExecNode* output, int32_t counter) override;
 
-  Status InputReceived(ExecNode* input, ExecBatch batch) override;
+  void StopProducing(ExecNode* output) override;
 
-  const Ordering& ordering() const override;
+  void StopProducing() override;
 
  protected:
-  Status StopProducingImpl() override;
+  void SubmitTask(std::function<Result<ExecBatch>(ExecBatch)> map_fn, ExecBatch batch);
 
-  /// Transform a batch
-  ///
-  /// The output batch will have the same guarantee as the input batch
-  /// If this was the last batch this call may trigger Finish()
-  virtual Result<ExecBatch> ProcessBatch(ExecBatch batch) = 0;
-
-  /// Function called after all data has been received
-  ///
-  /// By default this does nothing.  Override this to provide a custom implementation.
-  virtual void Finish();
+  virtual void Finish(Status finish_st = Status::OK());
 
  protected:
   // Counter for the number of batches received
