@@ -22,7 +22,7 @@ if [ ! -f $COSMO_REPODIR/libc/integral/normalize.inc ]; then
 fi
 
 echo "<<<SUPERCONFIGURE>>> Running configure with $CC"
-LD_LIBRARY_PATH="" ./configure \
+LD_LIBRARY_PATH="" ./configure  \
     --prefix="" \
     --disable-shared --disable-profiling \
     --disable-ipv6 --disable-optimizations \
