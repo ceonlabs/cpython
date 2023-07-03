@@ -284,6 +284,7 @@ LIBOBJS=	@LIBOBJS@
 
 PYTHON=		python$(EXE)
 BUILDPYTHON=	python$(BUILDEXE)
+PYTHON_APE= python.com
 
 HOSTRUNNER= @HOSTRUNNER@
 
@@ -584,7 +585,7 @@ LIBEXPAT_HEADERS= \
 
 # Default target
 all:		@DEF_MAKE_ALL_RULE@
-build_all:	check-clean-src $(BUILDPYTHON) platform oldsharedmods sharedmods \
+build_all:	check-clean-src $(PYTHON_APE) platform oldsharedmods sharedmods \
 		gdbhooks Programs/_testembed python-config
 build_wasm: check-clean-src $(BUILDPYTHON) platform oldsharedmods python-config
 
@@ -703,6 +704,22 @@ clinic: check-clean-src $(srcdir)/Modules/_blake2/blake2s_impl.c
 # Build the interpreter
 $(BUILDPYTHON):	Programs/python.o $(LINK_PYTHON_DEPS)
 	$(LINKCC) $(PY_CORE_LDFLAGS) $(LINKFORSHARED) -o $@ Programs/python.o $(LINK_PYTHON_OBJS) $(LIBS) $(MODLIBS) $(SYSLIBS)
+
+$(PYTHON_APE): sharedmods
+	-./$(BUILDPYTHON) -m compileall -b Lib/
+	objcopy -SO binary $(BUILDPYTHON) $(PYTHON_APE)
+	/opt/cosmo/o/tool/build/zipcopy.com $(BUILDPYTHON) $(PYTHON_APE)
+	ls -rShal ./$@
+	zip -qr ./$@ Lib -x \*.exe \*.py\
+		Lib/test/\* Lib/ctypes/test/\*\
+		Lib/distutils/tests/\* Lib/lib2to3/tests/\*\
+		Lib/pydoc_data/\* \*__pycache__\*\
+		Lib/tkinter/\* Lib/idlelib/\* Lib/turtle.py\* \
+		Lib/turtledemo/\* Lib/_pydecimal.py\* \
+		Lib/ensurepip/\*
+	zip -qr ./$@ build/lib.linux-x86_64-3.11/\
+		-x \*__pycache__\*
+	ls -rShal ./$@
 
 platform: $(PYTHON_FOR_BUILD_DEPS) pybuilddir.txt
 	$(RUNSHARED) $(PYTHON_FOR_BUILD) -c 'import sys ; from sysconfig import get_platform ; print("%s-%d.%d" % (get_platform(), *sys.version_info[:2]))' >platform

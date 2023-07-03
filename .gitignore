@@ -2,6 +2,9 @@
 # First, rules intended to apply in all subdirectories.
 # These contain no slash, or only a trailing slash.
 
+*.com
+*.com.dbg
+
 *.cover
 *.iml
 *.o
@@ -119,6 +122,7 @@ Tools/unicode/data/
 /config.log
 /config.status
 /config.status.lineno
+!/configure
 # hendrikmuhs/ccache-action@v1
 /.ccache
 /platform

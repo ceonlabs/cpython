@@ -1341,6 +1341,7 @@ class PyBuildExt(build_ext):
     def detect_modules(self):
         # remove dummy extension
         self.extensions = []
+        return
 
         # Some C extensions are built by entries in Modules/Setup.bootstrap.
         # These are extensions are required to bootstrap the interpreter or

@@ -588,11 +588,13 @@ else:
     if PREFIX and not prefix:
         prefix = PREFIX
         if not any(isfile(joinpath(prefix, f)) for f in STDLIB_LANDMARKS):
-            warn('Could not find platform independent libraries <prefix>')
+            # warn('Could not find platform independent libraries <prefix>')
+            pass
 
     if not prefix:
         prefix = abspath('')
-        warn('Could not find platform independent libraries <prefix>')
+        # warn('Could not find platform independent libraries <prefix>')
+        pass
 
 
     # Detect exec_prefix by searching from executable for the platstdlib_dir
@@ -619,7 +621,8 @@ else:
                     # keep working.
                     platstdlib_dir = exec_prefix
             else:
-                warn('Could not find platform dependent libraries <exec_prefix>')
+                # warn('Could not find platform dependent libraries <exec_prefix>')
+                pass
 
 
     # Fallback: assume exec_prefix == prefix
