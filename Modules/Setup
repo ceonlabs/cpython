@@ -199,7 +199,7 @@ _crypt _cryptmodule.c -lcrypt
 # Modules that require external libraries.
 
 _bz2 _bz2module.c -lbz2
-#_ctypes _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict.c _ctypes/cfield.c -ldl -lffi -DHAVE_FFI_PREP_CIF_VAR -DHAVE_FFI_PREP_CLOSURE_LOC -DHAVE_FFI_CLOSURE_ALLOC
+# _ctypes _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict.c _ctypes/cfield.c -ldl -lffi -DHAVE_FFI_PREP_CIF_VAR -DHAVE_FFI_PREP_CLOSURE_LOC -DHAVE_FFI_CLOSURE_ALLOC
 # The _dbm module supports NDBM, GDBM with compat module, and Berkeley DB.
 _dbm _dbmmodule.c -lgdbm_compat -DUSE_GDBM_COMPAT
 _gdbm _gdbmmodule.c -lgdbm
@@ -224,6 +224,15 @@ yaml._yaml _yaml/_yaml.c -IModules/_yaml/ -lyaml
 markupsafe._speedups markupsafe/_speedups.c
 
 _sqlite3 _sqlite/blob.c _sqlite/connection.c _sqlite/cursor.c _sqlite/microprotocols.c _sqlite/module.c _sqlite/prepare_protocol.c _sqlite/row.c _sqlite/statement.c _sqlite/util.c -lsqlite3
+
+# zstandard
+zstandard.backend_c _zstandard/backend_c.c -IModules/_zstandard/ -lzstd
+
+# lz4
+lz4._version _lz4/_version.c -IModules/_lz4 -llz4
+lz4.frame._frame _lz4/frame/_frame.c -IModules/_lz4 -llz4
+lz4.block._block _lz4/block/_block.c -IModules/_lz4 -llz4
+lz4.stream._stream _lz4/stream/_stream.c  -IModules/_lz4 -llz4
 
 # To statically link OpenSSL:
 # _ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) \
